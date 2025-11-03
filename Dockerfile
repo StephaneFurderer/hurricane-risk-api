@@ -17,6 +17,6 @@ EXPOSE 8000
 # Use $PORT if provided by platform (e.g., Railway), fallback to 8000
 ENV PORT=8000
 
-# Run the application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "${PORT}"]
+# Run the application using shell form to expand $PORT variable
+CMD uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}
 
