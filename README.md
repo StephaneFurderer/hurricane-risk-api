@@ -34,6 +34,33 @@ POST /api/v1/analyze-range
 }
 ```
 
+### Analyze Risk with Provided Data (n8n Integration)
+```
+POST /api/v1/analyze-records
+{
+  "start_date": "2024-10-23",
+  "days": 3,
+  "data": {
+    "2024-10-23": {
+      "records": [
+        {
+          "track_id": "AL182024",
+          "valid_time": "2024-10-23T00:00:00Z",
+          "lat": 25.5,
+          "lon": -80.3,
+          "maximum_sustained_wind_speed_knots": 85
+        }
+      ]
+    },
+    "2024-10-24": {
+      "records": []
+    }
+  }
+}
+```
+
+This endpoint accepts weather data directly (no external API calls). Perfect for n8n workflows where you've already fetched weather data from the weather-lab-data-api.
+
 ## Response Format
 
 ```json
@@ -90,3 +117,8 @@ http://localhost:8000/docs
 ## Deployment
 
 The API is deployed on Railway using Dockerfile.
+
+**Production URL:** https://hurricane-risk-api-production.up.railway.app
+
+- **API Documentation:** https://hurricane-risk-api-production.up.railway.app/docs
+- **Health Check:** https://hurricane-risk-api-production.up.railway.app/api/v1/health
